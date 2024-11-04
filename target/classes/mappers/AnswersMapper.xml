@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tust.app.dao.AnswersMapper">
+
+
+
+
+    <select id="selectAllAnswer" resultType="com.tust.app.domain.Answers">
+        select * from t_answer
+    </select>
+
+    <select id="selectById" resultType="com.tust.app.domain.Answers">
+        select * from t_answer where id=#{id}
+    </select>
+
+    <update id="updateAnswerState">
+        update t_answer set state2=#{state2} where id=#{id}
+    </update>
+
+    <delete id="deleteAnswer">
+        delete from t_answer where id=#{id}
+    </delete>
+
+    <insert id="addAnswer">
+        insert into t_answer(id,content,answeruser,pubtime2,topicId,state2) values(#{id},#{content},#{answeruser},#{pubtime2},#{topicId},1)
+
+    </insert>
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tust.app.dao.QTopicMapper">
+
+    <!-- 配置结果映射 -->
+    <resultMap id="QTopicMap" type="com.tust.app.domain.QTopic">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="pubtime" column="pubtime" />
+        <result property="detail" column="detail" />
+        <result property="edituser" column="edituser" />
+        <result property="state" column="state" />
+    </resultMap>
+
+    <!-- 插入帖子 -->
+    <insert id="insertTopic" parameterType="com.tust.app.domain.QTopic">
+        INSERT INTO t_topic (title, pubtime, detail, edituser, state)
+        VALUES (#{title}, #{pubtime}, #{detail}, #{edituser}, #{state})
+    </insert>
+
+    <!-- 删除帖子 -->
+    <delete id="deleteTopic" parameterType="int">
+        DELETE FROM t_topic WHERE id = #{id}
+    </delete>
+
+    <!-- 更新帖子 -->
+    <update id="updateTopic" parameterType="com.tust.app.domain.QTopic">
+        UPDATE t_topic
+        SET title = #{title}, pubtime = #{pubtime}, detail = #{detail}, edituser = #{edituser}, state = #{state}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据ID查询帖子 -->
+    <select id="selectTopicById" parameterType="int" resultType="com.tust.app.domain.QTopic">
+        SELECT * FROM t_topic WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有帖子 -->
+    <select id="selectAllTopics" resultType="com.tust.app.domain.QTopic">
+        SELECT * FROM t_topic
+    </select>
+
+    <!-- 根据用户名查询帖子 -->
+    <select id="selectTopicsByUsername" parameterType="String" resultMap="QTopicMap">
+        SELECT * FROM t_topic WHERE edituser = #{username}
+    </select>
+
+</mapper>

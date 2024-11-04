@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tust.app.dao.NewsMapper">
+    <select id="selectAllNews" resultType="com.tust.app.domain.News">
+        select * from t_news
+    </select>
+
+    <select id="selectNewsById" resultType="com.tust.app.domain.News">
+        select * from t_news where id=#{id}
+    </select>
+
+    <select id="selectNewsByTitle" resultType="com.tust.app.domain.News">
+        select  * from t_news where title like '%${title}%'
+    </select>
+
+    <insert id="writeNews">
+        insert into t_news(title, article, time) values(#{title}, #{article}, #{time})
+    </insert>
+
+    <delete id="deleteNewsById">
+        delete from t_news where id=#{id}
+    </delete>
+
+    <update id="updateNews">
+        update t_news set title=#{title},article=#{article} where id=#{id}
+    </update>
+</mapper>

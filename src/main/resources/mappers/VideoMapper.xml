@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tust.app.dao.VideoMapper">
+
+    <select id="selectAllVideo" resultType="com.tust.app.domain.Video">
+        select * from t_video
+    </select>
+
+    <select id="selectVideoById" resultType="com.tust.app.domain.Video">
+        select * from t_video where id = #{id}
+    </select>
+
+    <delete id="deleteVideoById">
+        delete from t_video where id = #{id}
+    </delete>
+
+    <insert id="addVideo">
+        insert into t_video(titleOrig,titleAlter,size,type,path,uploadTime) values (#{titleOrig},#{titleAlter},#{size},#{type},#{path},#{uploadTime})
+    </insert>
+</mapper>
